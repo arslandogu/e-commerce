@@ -2,12 +2,14 @@ import { StyleSheet } from "react-native";
 import {COLORS,SIZES,SHADOWS} from '../../constants/index'
 const styles = StyleSheet.create({
     container: {
-        marginEnd:12,
+        marginStart:8,
+        marginEnd:8,
         flex: 1,
         backgroundColor: COLORS.white,
         width: 182,
         height: 250,
-        borderRadius:20
+        borderRadius: 20,
+        marginVertical:10
     },
     imageContainer: {
         flex: 1,
@@ -20,8 +22,9 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     image: {
-        resizeMode: 'center',
-        aspectRatio:1,
+        resizeMode: 'cover',
+        aspectRatio: 1,
+        width:170
     },
     details: {
         padding:SIZES.xSmall

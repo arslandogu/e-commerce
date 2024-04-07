@@ -1,14 +1,15 @@
 import { View, Text, TouchableOpacity,Image, Button } from 'react-native'
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './productDetails';
 import { Ionicons,SimpleLineIcons,MaterialCommunityIcons,Fontisto } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useRoute } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants';
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const navigation = useNavigation();
-
+  const route = useRoute();
+  const { item } = route.params;
   const increment = () => {
     setQuantity(quantity + 1);
   }
@@ -27,10 +28,10 @@ const ProductDetails = () => {
           <Ionicons size={28} name='bookmark-outline'/>
         </TouchableOpacity>
       </View>
-      <Image style={styles.image} source={require('../assets/images/fn1.jpg')} />
+      <Image style={styles.image} source={{uri:item.imageUrl}} />
 
       <View style={styles.details}>
-          <Text style={{ fontFamily: 'semibold', fontSize: SIZES.medium + 2 }}>Product</Text>
+        <Text style={{ fontFamily: 'semibold', fontSize: SIZES.medium + 2 }}>{item.title}</Text>
         <View style={styles.rating}>
             {[1, 2, 3, 4, 5].map((index) => {
               return (
@@ -39,18 +40,21 @@ const ProductDetails = () => {
           })}
         </View>
       </View>
-        <View style={styles.ratingTextContainer}>
+      <View style={styles.ratingTextContainer}>
+
+        <Text style={styles.supplierText}>{item.supplier}</Text>
             <Text style={styles.ratingText}>(5.0)</Text>
+
       </View>
 
       <View style={styles.description}>
-        <Text style={{textAlign:'center', fontFamily: 'semibold', fontSize: 15 }}>Description</Text>
-        <Text style={styles.descriptionText}>Nulla ac vehicula elit, at condimentum purus. Phasellus eu aliquet leo. Praesent sodales nec erat eu lacinia. Morbi nec dui vitae eros tristique ornare non in nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec viverra nunc ut ipsum euismod vehicula. Nulla vel venenatis purus, eu bibendum mi.</Text>
+        <Text style={styles.description}>Description</Text>
+        <Text style={styles.descriptionText}>{item.description}</Text>
       </View>
       <View style={styles.locationRow}>
         <View style={styles.location}>
         <Ionicons name='location-outline' size={24} />
-        <Text>Ankara</Text>
+          <Text>{item.product_location}</Text>
         </View>
       <View style={styles.quantityRow}>
         <TouchableOpacity onPress={() => decrement() }>
@@ -71,10 +75,10 @@ const ProductDetails = () => {
 
       <View style={styles.footerContainer}>
         <View>
-        <Text style={{fontFamily:'semibold',fontSize:SIZES.medium+2,color:COLORS.white}}>
+        <Text style={styles.totalPrice}>
           Total Price
         </Text>
-        <Text style={{ fontFamily: 'bold', color: COLORS.white, fontSize: SIZES.xLarge }}>$123</Text>
+          <Text style={styles.price}>{item.price}</Text>
         </View>
         <View style={{
           flexDirection: 'row',alignItems:'center', gap:SIZES.medium}}>

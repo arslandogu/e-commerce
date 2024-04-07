@@ -1,11 +1,26 @@
 import { View, Text,TouchableOpacity,TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS,SIZES,SHADOWS } from '../constants';
 import styles from './search.style';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 const Search = () => {
+  // http://10.0.2.2:3000/api/products
+  const [searchKey, setSearchKey] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`http://10.0.2.2:3000/api/products/search/${searchKey}`);
+      setSearchResults(response.data);
+    } catch (error) {
+      console.log('Failed to get products', error);
+    }
+  }
+
 
   const navigation = useNavigation();
 
