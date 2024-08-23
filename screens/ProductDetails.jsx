@@ -78,7 +78,7 @@ const ProductDetails = () => {
         <Text style={styles.totalPrice}>
           Total Price
         </Text>
-          <Text style={styles.price}>{item.price}</Text>
+          <Text style={styles.price}>${item.price}</Text>
         </View>
         <View style={{
           flexDirection: 'row',alignItems:'center', gap:SIZES.medium}}>

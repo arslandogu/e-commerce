@@ -12,6 +12,7 @@ const useFetch = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [product, setProduct] = useState({});
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -24,6 +25,16 @@ const useFetch = () => {
       setIsLoading(false);
     }
   };
+
+  const createProduct = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post("http://10.0.2.2:3000/api/products");
+      
+    } catch (error) {
+
+    }
+  }
 
   useEffect(() => {
     fetchData();

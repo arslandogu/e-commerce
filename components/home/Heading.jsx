@@ -10,7 +10,7 @@ const Heading = (navigation) => {
     <View style={styles.headingContainer}>
       <Text style={{ fontFamily: 'semibold', fontSize: SIZES.large, }}>New Products</Text>
       <TouchableOpacity onPress={()=>navigation.navigate('SearchItems')}>
-        <Ionicons name='ios-grid-outline' size={26}/>
+        <Ionicons name='grid-outline' size={26}/>
       </TouchableOpacity>
     </View>
   )

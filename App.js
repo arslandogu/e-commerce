@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from 'react';
 import BottomTabNavigation from './navigation/BottomTabNavigation';
-import { Profile, Cart, Home, Search,ProductDetails, SearchItems } from './screens/index';
+import { ShoppingList,Profile, Cart, Home, Search,ProductDetails, SearchItems } from './screens/index';
 
 
 
@@ -59,6 +59,11 @@ export default function App() {
         <Stack.Screen
           name='SearchItems'
           component={SearchItems}
+          options={{headerShown:false}}
+        />
+        <Stack.Screen
+          name='ShoppingList'
+          component={ShoppingList}
           options={{headerShown:false}}
         />
 
